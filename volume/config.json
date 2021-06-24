@@ -1,0 +1,7 @@
+{
+	"proxied_hostname": "172.17.0.1",
+	"proxied_port": 8000,
+	"waf_hostname": "0.0.0.0",
+	"waf_port": 5000,
+	"debug": true
+} 

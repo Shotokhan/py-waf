@@ -1,0 +1,11 @@
+services:
+  py-waf:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      network: host
+    image: py-waf
+    volumes:
+      - ./volume/:/usr/src/app/volume/
+    ports:
+      - "5000:5000"
