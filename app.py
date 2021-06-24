@@ -2,7 +2,7 @@ from flask import Flask, Response, request
 import requests
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=None)
 
 config = {}
 config_path = "./volume/config.json"
@@ -27,7 +27,6 @@ def prohibit():
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catch_all(path):
     # this is very generic, but you can also use catch_all only for GET requests and define specific routes for your app for POST requests
-    # TODO: handle /static route because it is considered "404 not found"
     if not check_req(request):
         return prohibit()
     headers = dict(request.headers)
@@ -43,7 +42,7 @@ def catch_all(path):
     else:
         return prohibit()
     r_headers = [(name, value) for (name, value) in r.raw.headers.items()]
-    res = Response(r.content, r.status_code, headers)
+    res = Response(r.content, r.status_code, r_headers)
     return res
 
 
